@@ -9,6 +9,7 @@ const pool = globalForPg.__pgPool ?? new Pool({
   password: process.env.PG_PASSWORD,
   database: process.env.PG_DATABASE,
   connectionTimeoutMillis: 10000,
+  ssl: { rejectUnauthorized: false },
 });
 
 if (process.env.NODE_ENV !== "production") globalForPg.__pgPool = pool;

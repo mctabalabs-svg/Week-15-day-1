@@ -28,6 +28,31 @@
 - Reason: Renders static content only.
 - Reason: Does not use React hooks or event handlers.
 
+### app/(shop)/cart/page.js
+- Classification: Client Component
+- Reason: Uses CartContext to dispatch reducer actions and render interactive cart UI.
+- Reason: Includes event handlers for removing items, clearing, and checkout navigation.
+
+### app/cart/cartReducer.js
+- Classification: Utility (Client-Reachable)
+- Reason: Pure reducer consumed by useReducer inside CartProvider.
+- Reason: Contains no React hooks itself.
+
+### app/cart/CartContext.jsx
+- Classification: Client Component
+- Reason: Creates context and uses useReducer with localStorage persistence.
+- Reason: Wraps child components with provider value.
+
+### app/cart/AddToCartButton.jsx
+- Classification: Client Component
+- Reason: Uses the `use client` directive.
+- Reason: Dispatches cart reducer actions on click.
+
+### app/cart/CartBadge.jsx
+- Classification: Client Component
+- Reason: Uses the `use client` directive.
+- Reason: Reads cart state from context and renders a linked badge.
+
 ### app/sitemap.js
 - Classification: Server Route Handler
 - Reason: Fetches products from Postgres and returns sitemap XML data.

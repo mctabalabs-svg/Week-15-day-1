@@ -24,12 +24,12 @@ export default async function ProductsPage() {
     );
     products = result.rows;
   } catch (error) {
-    console.log("Error object keys:", Object.keys(error));
+    
     console.log("Error message:", error?.message);
     console.log("Error code:", error?.code);
     console.log("Error detail:", error?.detail);
     if (!isRecoveryModeError(error)) {
-      console.error("Database error:", error.message);
+      
     }
   }
 

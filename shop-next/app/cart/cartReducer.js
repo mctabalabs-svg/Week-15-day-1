@@ -3,7 +3,7 @@ export const initialState = { status: "empty", items: [] };
 export function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_ITEM": {
-      const { productId, priceCents, quantity = 1 } = action;
+      const { productId, priceCents, quantity = 1, productName } = action;
       const existing = state.items.find((i) => i.productId === productId);
       let items;
       if (existing) {
@@ -11,7 +11,7 @@ export function cartReducer(state, action) {
           i.productId === productId ? { ...i, quantity: i.quantity + quantity } : i
         );
       } else {
-        items = [...state.items, { productId, priceCents, quantity }];
+        items = [...state.items, { productId, priceCents, productName, quantity }];
       }
       return { ...state, status: "populated", items };
     }

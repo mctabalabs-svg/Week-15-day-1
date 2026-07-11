@@ -8,7 +8,13 @@ export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, initialState, (init) => {
     if (typeof window === "undefined") return init;
     const stored = localStorage.getItem("cart");
-    return stored ? JSON.parse(stored) : init;
+    if (!stored) return init;
+    try {
+      return JSON.parse(stored);
+    } catch {
+      localStorage.removeItem("cart");
+      return init;
+    }
   });
 
   useEffect(() => {

@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 export const revalidate = 0;
 
 export default async function LeadDetailPage({ params }) {
-  const { rows } = await queryWithRetry("SELECT * FROM leads WHERE id = $1", [params.id]);
+  const { id } = await params;
+  const { rows } = await queryWithRetry("SELECT * FROM leads WHERE id = $1", [id]);
   const lead = rows[0];
   if (!lead) notFound();
   return (
